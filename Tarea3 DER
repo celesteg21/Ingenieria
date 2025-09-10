@@ -1,0 +1,102 @@
+Ejercicio 1:
+A partir del Diagrama de Entidad-Relación (ERD) dado, crear la base de datos GestionPedidos y las tablas Cliente, Pedido, Producto y Proveedores con sus respectivas claves primarias y foráneas.
+![Texto alternativo](Tarea3.png)
+
+
+Use los siguientes comandos y explique cómo se usa cada uno en una línea comentario:
+•     CREATE DATABASE
+•     USE
+•     CREATE TABLE
+Ejemplo:
+CREATE DATABASE GestionPedidos;
+USE GestionPedidos;
+
+Diseño de cada tabla:
+Tabla Clientes
+ID Cliente: INT -PRIMARY KEY
+Nombrecliente: VARCHAR(100)
+Direccion: VARCHAR(150)
+Telefono: VARCHAR(15)
+Tabla Proveedores
+ID proveedor: INT- PRIMARY KEY
+Nombreproveedor: VARCHAR(100)
+Direccionproveedor: VARCHAR(150)
+Telefonoproveedor: VARCHAR(15)
+Tabla Productos
+ID producto: INT- PRIMARY KEY
+Nombreproducto: VARCHAR(100)
+precio: DECIMAL(10, 2)
+Stock: INT
+ID proveedor: INT- FOREIGN KEY
+Tabla Pedidos
+ID pedido: INT - PRIMARY KEY
+Fechapedido: DATE
+ID Cliente: INT- FOREIGN KEY
+ID producto: INT- FOREIGN KEY
+Cantidad: INT
+PUnitario: DECIMAL(10, 2)
+
+Ejemplo de creación en SQL:
+-- Crear la tabla Productos
+CREATE TABLE productos (
+              ID_producto INT PRIMARY KEY,
+              Nombreproducto VARCHAR(IOO),
+              Precio DECIMAL(IO, 2),
+              Stock INT,
+              ID Proveedor INT,
+              FOREIGN KEY (ID_proveedor) REFERENCES Proveedores(ID_Proveedor)
+);
+Entrega:  Adjuntar archivo Ejercicio1.sql del SSMS
+
+Ejercicio 2: Diagrama de Base de Datos
+Crear un Diagrama de base de datos con SSMS.
+
+Entrega:  Adjuntar Diagrama del SSMS
+
+Ejercicio 3: Alimentar las tablas creadas
+Usar los siguientes comandos:
+
+-- Seleccionar la base de datos para trabajar en ella
+USE GestionPedidos;
+
+-- Insertar datos en las tablas
+INSERT INTO Clientes (ID_Cliente, NombreCliente, Direccion, Telefono)
+VALUES
+(1, 'Juan Perez', 'Calle Falsa 123', '555-1234’),
+(2, 'Maria Gomez', 'Av. Siempre Viva 456', '555-5678’),
+(3, 'Carlos Martinez', 'Calle Luna 789', '555-9012’);
+
+INSERT INTO Proveedores (ID_Proveedor, NombreProveedor, DireccionProveedor, TelefonoProveedor)
+VALUES
+(1, 'Proveedor A', 'Zona Industrial 1', '555-0001’),
+(2, 'Proveedor B', 'Zona Industrial 2', '555-0002’),
+(3, 'Proveedor C', 'Zona Industrial 3', '555-0003’);
+
+INSERT INTO Productos (ID_Producto, NombreProducto, Precio, Stock, ID_Proveedor)
+VALUES
+(1, 'Producto X', 10.00, 100, 1),
+(2, 'Producto Y', 20.00, 200, 2),
+(3, 'Producto Z', 30.00, 300, 3);
+
+INSERT INTO Pedidos (ID_Pedido, FechaPedido, ID_Cliente, ID_Producto, Cantidad, PUnitario)
+VALUES
+(1, '2024-08-01', 1, 1, 10, 10.00),
+(2, '2024-08-02', 2, 2, 5, 20.00),
+(3, '2024-08-03', 3, 3, 2, 30.00),
+(4, '2024-08-04', 1, 2, 1, 20.00),
+(5, '2024-08-05', 2, 1, 3, 10.00);
+
+Entrega:  Adjuntar ScreenShots de los datos en cada una de las tablas.
+
+Ejercicio 4: Practicar SELECT, FROM y WHERE
+
+Práctica 1: Obtener una lista de todos los productos cuyo precio sea superior a $20.
+Práctica 2: Listar todos los pedidos que se realizaron el 3 de agosto de 2024.
+Práctica 3: Obtener una lista de todos los clientes que viven en "Calle Falsa 123".
+
+Ejemplo:
+SELECT NombreCliente, Direccion, Telefono
+FROM Clientes
+WHERE Direccion = 'Calle Falsa 123';
+
+Entrega:  Adjuntar para cada práctica, un ScreenShot donde se vea la consulta SQL y el panel de resultados.
